@@ -17,3 +17,9 @@ Then we created a folder named config which holds the file that connects to our 
 1) Today, we created our schema in the models folder. This schema specifies the data our api expects from the client side. If the a required information in the user data is missing, the requests results in a failure of status 404 else if all the necessary information required is sent to the api, then it results in success status of 201 which represents data creation.
 
 2) Then we imported the schema in our server side script and also installed the postman extension to see if our code works by making a post request and it worked as we could see our product in our collections of the mongodb cluster.
+
+
+# Day3 9/10/2024
+1) Today, we've completed our api. So, basically, we have a route for the api products (in the server.js file) and for each route, put them under the file - product.js with data methods and related endpoints. We have the controller functions, for each of them which is in the product.controller.js file, we are using mongoose to be able to communicate with our database as well as the product model we have created in our product.model.js file so that we can really get some products, update them, delete them or even create products. Other than that, we have the configuration for the .env in the .env file, we can read the content just because we have called the dotenv.config() function in our server.js file. And finally, we have the database file where we can connect with the connectDB() functionnin the server.js file which we are using the app.listen() callback function. I hope it makes sense 🙂
+
+2) We commenced the building code blocks of our frontend today as well. We added light/dark mode functionality and we also completed the user inerface of the page that allows the client to create new products.
