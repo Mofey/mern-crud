@@ -81,30 +81,33 @@ const ProductCard = ({ product }) => {
 
   return (
     <Box
-    shadow='lg'
-    rounded='lg'
-    overflow='hidden'
     transition='all 0.3s'
-    _hover={{ transform: 'translate(-5px)', shadow: 'xl' }}
-    bg={bg}
+    _hover={{ transform: 'translate(-5px)'}}
     width="300px"
     height="400px"
     >
-         <Image src={product.image} alt={product.name} height="250px" width="100%" objectFit='contain' />
+        <Image src={product.image} alt={product.name} height="260px" width="100%" objectFit='contain' />
 
-        <Box p={4}>
-            <Heading as='h3' size='sm' mb={2}>
-                {product.name}
-            </Heading>
-            <Text fontWeight='bold' fontSize='lg' color={textColor} mb={4}>
-                €{product.price}
-            </Text>
+        <Box shadow='lg'
+        rounded='lg'
+        overflow='hidden'
+        bg={bg}
+        _hover={{  shadow: 'xl' }}
+        >
+            <Box p={4}>
+                <Heading as='h3' size='sm' mb={2}>
+                    {product.name}
+                </Heading>
+                <Text fontWeight='bold' fontSize='lg' color={textColor} mb={4}>
+                    €{product.price}
+                </Text>
 
-            <HStack spacing={2}>
-                <IconButton icon={<EditIcon
-                onClick={onOpen} />} colorScheme='blue' />
-                <IconButton icon={<DeleteIcon />} onClick={onDeleteOpen} colorScheme='red' />
-            </HStack>
+                <HStack spacing={2}>
+                    <IconButton icon={<EditIcon
+                    onClick={onOpen} />} colorScheme='blue' />
+                    <IconButton icon={<DeleteIcon />} onClick={onDeleteOpen} colorScheme='red' />
+                </HStack>
+            </Box>
         </Box>
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
