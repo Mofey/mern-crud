@@ -1,37 +1,36 @@
-//Entry point of our api
 import express from 'express';
-import dotenv from 'dotenv';
 import path from 'path';
-import { connectDB } from './config/db.js';
+import { fileURLToPath } from 'url';
+import connectDB from './config/db.js';
 import productRoutes from './routes/product.routes.js';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 const app = express();
-
 const PORT = process.env.PORT || 5000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const __dirname = path.resolve();
-
-//connect to the database
+// Connect to the database
 connectDB();
 
-//console.log(process.env.MONGO_URI);
-
-//just a middleware that runs before any request
-app.use(express.json()); // to parse json data in the req.body
+// Middleware to parse JSON data in the req.body
+app.use(express.json());
 
 // API routes
 app.use('/api/products', productRoutes);
 
-if(process.env.NODE_ENV === 'production'){
-    //takes the dist folder to make it static assets
-    app.use(express.static(path.join(__dirname, '/frontend/dist')));
+if (process.env.NODE_ENV === 'production') {
+    // Serve static files from the frontend build directory
+    app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
     app.get('*', (req, res) => {
-        //renders the index.html file as our react application
-        res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
+        // Render the index.html file as our React application
+        res.sendFile(path.resolve(__dirname, '../frontend/dist', 'index.html'));
     });
+} else {
+    console.log('Not in production mode');
 }
 
 app.listen(PORT, () => {
